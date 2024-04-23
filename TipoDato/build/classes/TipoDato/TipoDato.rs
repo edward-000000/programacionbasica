@@ -1,0 +1,2 @@
+TipoDato
+tipodato.TipoDato
