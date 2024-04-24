@@ -1,0 +1,87 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package operacionesconcadenas;
+   //@author Alumno edward Rodrigo Uriarte Anccota
+public class OperacionesConCadenas {
+    public static void main(String[] args) {// TODO code application logic here
+        String Nombre = "Edward Rodrigo";
+        String Apellido = "Uriarte Anccota";
+        //Concatenar
+        String NombreCompleto = Nombre  +" "+ Apellido;
+        System.out.println("Nombre Completo :" + NombreCompleto);
+        //Mayusculas
+        String NombreCompleto1 = Nombre  +" "+ Apellido;
+        System.out.println("NOMBRE COMPLETO :" + NombreCompleto1.toUpperCase());
+        //Minusculas
+        String NombreCompleto2 = Nombre  +" "+ Apellido;
+        System.out.println("nombre completo :" + NombreCompleto2.toLowerCase());
+        //Contar Cadenas
+        String NombreCompleto3 = Nombre  +" "+ Apellido;
+        System.out.println("Cantidad de Caracteres :" + NombreCompleto3.length());
+        //Cortar una Cadena
+        String NombreCompleto4 = Nombre  +" "+ Apellido;
+        //["Edward" , "Rodrigo" , "Uriarte" , "Anccota"]
+        String[] NombreCortado = NombreCompleto4.split(" ");
+        //For Complicado
+        /*for(int i = 0  ; i < NombreCortado.length ; i++){
+            System.out.println(NombreCortado[i]);
+        }*/
+        //For Sencillo
+        for(String nombre : NombreCortado){
+            System.out.println(nombre);
+        }
+        //Equal
+        //Forma 1
+        /*boolean Comparacion = Nombre.equals(Apellido);*/
+        //Si son iguales
+        boolean Comparacion= Nombre == Apellido;
+        System.out.println("Comparacion :" + Comparacion);
+        
+        //Interpolacion de Variables
+        String n = "Edward";
+        String a = "Uriarte";
+        int e = 50;
+        
+        String mensaje = String.format("Mi nombre es %s y mi apellido es %s y tengo %d años", n, a, e);
+        System.out.println(mensaje);
+    } 
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package operadoresaritmeticos;
+  //@author Alumno Edward Rodrigo Uriarte Anccota
+public class OperadoresAritmeticos {
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int VariableUno = 50;
+        int VariableDos = 20;
+        //Asiganar Valores a Operaciones Aritmeticas
+        int Multiplicacion =  VariableUno * VariableDos;
+        double Divicion  = VariableUno / VariableDos;
+        int Suma = VariableUno + VariableDos;
+        int Resta = VariableUno  - VariableDos;
+        int Modulo = VariableUno % VariableDos;
+        //Incremento o //VariableUno = VariableUno +1;
+        VariableUno ++;
+        System.out.println("Incremento: " + VariableUno);
+        //Decremento o  //VariableDos = VariableDos -1;
+        VariableDos --;
+        System.out.println("Decremento: " + VariableDos);
+        
+        //Multiplicacion
+        System.out.println("Multiplicacion : " + Multiplicacion);
+        //Divicion
+        System.out.println("Divicion: " + Divicion);
+        // Suma 
+        System.out.println("Suma : " + Suma);
+        // Resta
+        System.out.println("Resta : " + Resta);
+        //Modulo
+        System.out.println("Modulo: " + Modulo);
+    }
+}
