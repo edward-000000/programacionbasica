@@ -1,0 +1,316 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package OperadoresComparacion;
+/**
+ *
+ * @author Alumno Edward Rodrigo Uriarte Anccota
+ */
+public class OperadoresComparacion {
+    public static void main(String[] args) {
+       int y = 20;
+       int z = 10;
+       // Operador igual (==)
+
+       boolean igual = y == z;
+       System.out.println("Igual: " + igual);
+       
+       // Operador diferente (!=)
+       boolean noIgual = y != z;
+       System.out.println("No igual :" + noIgual);
+       
+       // Operador mayorque(>)
+       boolean mayorQue = y > z;
+       System.out.println("Mayor que:"+ mayorQue);
+       
+       // Operador menorque(<)
+       boolean menorque = y < z;
+       System.out.println("Menor que :" + menorque);
+       
+       // Operador menorigualque(<=)
+       boolean menorigualque = y <= z;
+       System.out.println("Menor o igual que :" + menorigualque);
+       
+       // Operador mayorigualque(>=)
+       boolean mayorigualque = y >= z;
+       System.out.println("Mayor o igual que :" + mayorigualque);
+
+    }
+}    
+///////
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package switchcase;
+import java.util.Scanner;
+/**
+ * @author Alumno Edward Rodrigo Uriarte Anccota
+ */
+public class SwitchCase {
+    public static void main(String[] args) {
+        // TODO code application logic here
+        System.out.println("===================================");
+        System.out.println("Bienvenido a Nuestro Sistema");
+        System.out.println("1. Saludar");
+        System.out.println("2. Despedirce");
+        System.out.println("3. Cobrar");
+        System.out.println("4. Escapar");
+        System.out.println("5. Salir");
+        System.out.println("===================================");
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        int Opcion = scanner.nextInt();
+        
+        
+        switch (Opcion){
+            case 1: System.out.println("Buenos dias");
+            break;
+            
+            case 2: System.out.println("Vuelva pronto..");
+            break;
+            
+            case 3: System.out.println("Quiero que me Pague");
+            break;
+            
+            case 4: System.out.println("Se Escapo..");
+            break;
+            
+            case 5: System.out.println("Gracias ´por usar nuestro Sistema");
+            break;
+            
+            default: 
+                System.out.println("Ingrese uan opcion validada");
+                
+   
+        }    
+        scanner.close();
+        System.out.println("Fin del Sistema");
+    }
+    
+}
+////////
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package ciclowhile;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alumno edward Rodrigo Uriarte Anccota
+ */
+public class CicloWhile {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner scanner = new Scanner(System.in); 
+        boolean salir = false;
+
+        
+        while(!salir){
+            System.out.println("=======================================");
+            System.out.println("   Bienvenido a Nuestro Sistema");
+            System.out.println("=======================================");
+            System.out.println("1. Saludar");
+            System.out.println("2. Despedirce");
+            System.out.println("3. Cobrar");
+            System.out.println("4. Escapar");
+            System.out.println("5. Salir");
+            System.out.println("=======================================");
+            
+            //Leer la opcion ingresada
+            int opcion = scanner.nextInt();
+        
+            switch (opcion){
+                case 1: System.out.println("Buenos dias");
+                    break;
+            
+                case 2:
+                    int[] numero = {1,2,3,4,5};
+                    Object[] numerosletras = {12 , "Edward",123.21,"true"};
+                    //For simplificado
+                    /*for(Object nl: numerosletras){
+                       System.out.println(nl);
+                    }*/
+                    
+                    //For normal
+                    for(int n = 0  ; n < numero.length ; n++){
+                        if(numero[n] == 2 && numero[n] == 3 ){
+                            System.out.println("numero encontrado");
+                        }else{ 
+                            System.out.println("numero no encontrado");
+                        }
+                        System.out.println(numero[n]);
+                    }
+                    System.out.println("Vuelva pronto");
+                    break;
+            
+                case 3: System.out.println("Quiero que me Pague");
+                    break;
+            
+                case 4: System.out.println("Se Escapo..");
+                    break;
+            
+                case 5:
+                    salir = true;
+                    System.out.println("Gracias por usar nuestro Sistema");
+                    break;
+            
+                default: 
+                    System.out.println("Ingrese uan opcion validada");
+                    break;
+            }
+        }
+        scanner.close();
+        System.out.println("Fin del Sistema");
+        }
+    } 
+/////////
+
+package structuradatos;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+/**
+ *
+ * @author Alumno Edward Rodrigo Uriarte Anccota
+ */
+public class StructuraDatos {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+        
+        try {
+            while(!salir){
+            System.out.println("======================");
+            System.out.println("Estructura de Datos");
+            System.out.println("======================");
+            System.out.println("1. Array");
+            System.out.println("2. ArrayList");
+            System.out.println("3. HashMap");
+            System.out.println("4. Salir");
+            
+            System.out.println("----------------------");
+            System.out.println("Ingrese una opcion");
+            System.out.println("----------------------");
+            int opcion = scanner.nextInt();
+            
+            switch (opcion) {
+                case 1:
+                    System.out.println("Bienvenido a la estructura de datos Array");
+                    int [] edades = {12,40,30,50,7,5,60,70,100};
+                    String[] nombres = {"Daniel", "Marcos","Diego","Ariel","Edward"};
+                    
+                    //lONGITUD DEL ARRAY
+                    System.out.println("Longitud Edades: " + edades.length);
+                    System.out.println("Longitud Nombres: " + nombres.length);
+                    
+                    //Cambiar un valor
+                    try {
+                        edades[1] = 38;
+                        nombres[4] = "David";
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        System.out.println("Error al acceder unj indice fuera de rango");
+                    }
+
+                    System.out.println("Nuevo Dato Edades Array: " + edades[1]);
+                    System.out.println("Nuevo Dato Nombres Array: " + nombres[4]);
+                    
+                    
+                    //Convertir un Array a Stringh
+                    System.out.println(Arrays.toString(edades));
+                    System.out.println(Arrays.toString(nombres));
+                    /*//Clonar
+                    int[] edadesClon = edades.clone();
+                    System.out.println("Aray clonado es: " + Arrays.toString(edades));
+                    */
+                    
+
+                    System.out.println("Nuevo Dato Edades Array: " + edades[1]);
+                    System.out.println("Nuevo Dato Nombres Array: " + nombres[4]);
+                    break;
+                case 2:
+                    System.out.println("Bienvenido a ArraysList: ");
+                    
+                    ArrayList<String> ListaNombres = new ArrayList<>();
+                    //Agregar datos a la lista
+                    ListaNombres.add("David");
+                    ListaNombres.add("Marco");
+                    ListaNombres.add("Julio");
+                    
+                    //Longitud de Lista
+                    System.out.println("Tamannio Lista: " + ListaNombres.size());
+                    
+                    //Remover un elemento de la lista
+                    ListaNombres.remove(2);
+                    
+                    /*//Obtener un valor - elemento de la lista del array
+                    System.out.println("Elemento Obtenido" + ListaNombres.get(2));
+                    */
+                    //Comprobar si la lista esta vacia
+                    System.out.println("Lista vacia: " + ListaNombres.isEmpty());
+                    
+                    //Comprobar si un elemento existe
+                    System.out.println("Existencia de Elementos: " + ListaNombres.contains("David"));
+                    
+                    break;
+                    
+                case 3:
+                    System.out.println("Bienvenido a HashMap");
+                    
+                    //Tipo de datos compuesto de dos tipos de datos // NEW INSTANCIAR UN OBJETO
+                    //Variable que soporta mapa de datos
+                    Map<String , Integer> edades1 = new HashMap<>();
+                    //Insertando data
+                            
+                    edades1.put("Edwardo" ,18);
+                    edades1.put("Carlos",19);
+                    edades1.put("Javier",20);
+                    edades1.put("Diego",21);
+                    //Eliminar un dato
+                    edades1.remove("Pedro");
+                    //Recuperar un valor
+                    System.out.println("Edad Edwardo: "+ edades1.get("Edwardo"));
+                    //Longitud del mapa
+                    edades1.size();
+                    
+                    //Inprimir las llaves - Como son de dato cadena Ponemos String por que asignamos ese valor
+                    for (String key : edades1.keySet())
+                        System.out.println("Inprime las llaves: " + key);
+                    
+                    //Inprimir los valores (Value)
+                    for ( Integer Value: edades1.values())
+                        System.out.println("Inprimi Valores de las llaves: " + Value);
+                    
+                    //Imprimir las llaves y los valores AMBAS //Se puede utilizar para los precios - producto y precio
+                    for (Map.Entry<String, Integer> lv: edades1.entrySet()){
+                        System.out.println("llave: " +lv.getKey()+ " Valor: " + lv.getValue());
+                    }
+                    
+                    break;
+                case 4:
+                    System.out.println("Usted salio del sistema");
+                    break;
+                default:
+                    System.out.println("Opcion no encontrada: " + " Por favor elija un opcion valida");
+                    break;
+            }
+        }
+        scanner.close();
+        }catch (Exception e) {
+            System.out.println("Error dato o caracter no encontrado : " + e.getMessage());
+        }
+    }  
+}
