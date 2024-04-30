@@ -84,4 +84,34 @@ public class OperadoresAritmeticos {
         //Modulo
         System.out.println("Modulo: " + Modulo);
     }
+}/////////
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package operdoreslogicos;
+
+/**
+ *
+ * @author Alumno Edward Rodrigo uriarte Anccota
+ */
+public class operdoreslogicos {
+    public static void main(String[] args) {
+    boolean esVerdadero = true;
+    boolean esFalso = false;
+    
+    //Operador And (&&)
+     boolean resultadoAnd = esVerdadero && esFalso;
+     System.out.println("AND :"+ resultadoAnd);
+     //Operador OR (||)
+     boolean resultadoOr = esVerdadero || esFalso;
+     System.out.println("OR :"+ resultadoOr);
+     //Operador NOT (!)
+     boolean resultadoNot = !esVerdadero;
+     System.out.println("Not: "+ resultadoNot);
+    }
+    
 }
+//Realizar la introducción a los tipos de datos y desarrollo de softw are en Java
+//Implementar las clases de bibliotecas y métodos en Java
+//Crear Sentencias de decisión, bucles, clases, matrices y excepciones
