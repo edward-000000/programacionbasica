@@ -1,0 +1,371 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package menucafeteria;
+
+/**
+ *
+ * @author rodri
+ */
+
+public class Cafeteria {
+    public static void main(String[] args) {
+        MenuCafeteria menu = new MenuCafeteria();
+        menu.mostrarMenu();
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package menucafeteria;
+
+/**
+ *
+ * @author rodri
+ */
+import java.util.Scanner;
+
+
+
+import java.util.Scanner;
+
+public class MenuCafeteria {
+    private Scanner scanner;
+
+    public MenuCafeteria() {
+        scanner = new Scanner(System.in);
+    }
+
+    public void mostrarMenu() {
+        int opcion;
+
+        do {
+            System.out.println("\nBienvenido a la Cafeteria");
+            System.out.println("1. Información de la Cafeteria");
+            System.out.println("2. Productos");
+            System.out.println("3. Ingresar como Empleado");
+            System.out.println("4. Ingresar como Cliente");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer de entrada
+
+            switch (opcion) {
+                case 1:
+                    InformacionCafeteria.mostrarInformacion();
+                    break;
+                case 2:
+                    GestionProductos.mostrarProductos();
+                    break;
+                case 3:
+                    IngresoEmpleado.ingresar();
+                    break;
+                case 4:
+                    // Aquí llamamos a un método para que el cliente pueda comprar productos
+                    GestionProductos.comprarProducto();
+                    break;
+                case 0:
+                    System.out.println("¡Gracias por visitar la Cafeteria!");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+            }
+        } while (opcion != 0);
+    }
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package menucafeteria;
+
+/**
+ *
+ * @author rodri
+ */
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+public class GestionProductos {
+    private static Map<String, Map<String, Double>> productos = new HashMap<>();
+    private static Map<String, Integer> cantidadPredeterminada = new HashMap<>();
+
+    static {
+        productos.put("Bebidas", new HashMap<>());
+        productos.put("Postres", new HashMap<>());
+        productos.put("Comida", new HashMap<>());
+
+        productos.get("Bebidas").put("Café", 2.50);
+        productos.get("Bebidas").put("Té", 1.80);
+        productos.get("Bebidas").put("Refresco", 1.50);
+        productos.get("Bebidas").put("Agua", 1.00);
+
+        productos.get("Postres").put("Pastel", 3.50);
+        productos.get("Postres").put("Helado", 2.00);
+        productos.get("Postres").put("Galletas", 1.20);
+        productos.get("Postres").put("Frutas", 2.50);
+
+        productos.get("Comida").put("Sándwich", 4.00);
+        productos.get("Comida").put("Ensalada", 3.50);
+        productos.get("Comida").put("Hamburguesa", 5.00);
+        productos.get("Comida").put("Pizza", 6.50);
+
+        cantidadPredeterminada.put("Bebidas", 10);
+        cantidadPredeterminada.put("Postres", 10);
+        cantidadPredeterminada.put("Comida", 10);
+    }
+
+    public static void mostrarProductos() {
+        System.out.println("Productos disponibles:");
+        for (Map.Entry<String, Map<String, Double>> categoria : productos.entrySet()) {
+            System.out.println("\n" + categoria.getKey() + ":");
+            for (Map.Entry<String, Double> producto : categoria.getValue().entrySet()) {
+                System.out.println(producto.getKey() + " - Precio: $" + producto.getValue());
+            }
+        }
+    }
+
+    public static void comprarProducto() {
+        Scanner scanner = new Scanner(System.in);
+        List<Producto> productosComprados = new ArrayList<>();
+        double precioTotal = 0;
+        boolean continuarCompra = true;
+
+        do {
+            mostrarProductos();
+
+            System.out.println("\nSeleccione un producto para comprar (Ingrese '0' para salir): ");
+            String productoSeleccionado = scanner.nextLine();
+            if (!productoSeleccionado.equals("0")) {
+                System.out.print("Ingrese la cantidad que desea comprar: ");
+                int cantidad = scanner.nextInt();
+                scanner.nextLine();
+
+                if (cantidad <= obtenerCantidadDisponible(productoSeleccionado)) {
+                    double precioUnitario = productos.get(obtenerCategoriaProducto(productoSeleccionado)).get(productoSeleccionado);
+                    double precioProducto = precioUnitario * cantidad;
+
+                    productosComprados.add(new Producto(productoSeleccionado, precioUnitario, cantidad));
+                    precioTotal += precioProducto;
+
+                    // Actualizar la cantidad disponible de productos (no se implementa en esta versión básica)
+                    System.out.println("Producto agregado a la lista de compra.");
+                } else {
+                    System.out.println("La cantidad solicitada excede la cantidad disponible de productos.");
+                }
+            } else {
+                continuarCompra = false; // El cliente desea salir
+            }
+        } while (continuarCompra);
+
+        if (!productosComprados.isEmpty()) {
+            System.out.println("\n--- Boleta de Venta ---");
+            for (Producto producto : productosComprados) {
+                System.out.println("Producto: " + producto.getNombre() + " - Precio Unitario: $" + producto.getPrecioUnitario() + " - Cantidad: " + producto.getCantidad());
+            }
+            System.out.println("Precio Total: $" + precioTotal);
+        } else {
+            System.out.println("No se han realizado compras.");
+        }
+
+        System.out.println("Compra finalizada. ¡Gracias por su compra!");
+    }
+
+    
+    
+    private static String obtenerCategoriaProducto(String nombreProducto) {
+        for (Map.Entry<String, Map<String, Double>> categoria : productos.entrySet()) {
+            if (categoria.getValue().containsKey(nombreProducto)) {
+                return categoria.getKey();
+            }
+        }
+        return null;
+    }
+    
+    private static int obtenerCantidadDisponible(String nombreProducto) {
+        String categoria = obtenerCategoriaProducto(nombreProducto);
+        if (categoria != null) {
+            return cantidadPredeterminada.get(categoria);
+        }
+        return 0;
+    }
+
+    // Método para agregar un nuevo producto a una categoría específica
+    public static void agregarProducto() {
+        Scanner scanner = new Scanner(System.in);
+        String categoria;
+        String nombreProducto;
+        double precio;
+
+        System.out.println("\nAgregar Producto:");
+
+        System.out.println("Categorías disponibles: Bebidas, Postres, Comida");
+        System.out.print("Ingrese la categoría del producto: ");
+        categoria = scanner.nextLine();
+        while (!productos.containsKey(categoria)) {
+            System.out.print("Categoría no válida. Ingrese una categoría válida: ");
+            categoria = scanner.nextLine();
+        }
+
+        System.out.print("Ingrese el nombre del producto: ");
+        nombreProducto = scanner.nextLine();
+        System.out.print("Ingrese el precio del producto: $");
+        precio = scanner.nextDouble();
+        scanner.nextLine(); 
+
+        productos.get(categoria).put(nombreProducto, precio);
+        System.out.println("Producto agregado exitosamente.");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("\nMenú de Gestión de Productos");
+            System.out.println("1. Productos");
+            System.out.println("2. Agregar Producto");
+            System.out.println("0. Volver al Menú Principal");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (opcion) {
+                case 1:
+                    mostrarProductos();
+                    break;
+                case 2:
+                    agregarProducto();
+                    break;
+                case 0:
+                    System.out.println("Volviendo al Menú Principal...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+            }
+        } while (opcion != 0);
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package menucafeteria;
+import java.util.*;
+/**
+ *
+ * @author rodri
+ */
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class IngresoEmpleado {
+    private static Map<String, String> credencialesEmpleados = new HashMap<>();
+
+    static {
+        // Simulamos algunos empleados y sus credenciales (nombre de usuario y contraseña)
+        credencialesEmpleados.put("empleado1", "contrasena1");
+        credencialesEmpleados.put("empleado2", "contrasena2");
+        // Puedes agregar más empleados aquí si lo deseas
+    }
+
+    public static void ingresar() {
+    Scanner scanner = new Scanner(System.in);
+    String usuario;
+    String contrasena;
+
+    System.out.println("Ingrese sus credenciales de empleado:");
+    System.out.print("Usuario: ");
+    usuario = scanner.nextLine();
+    System.out.print("Contraseña: ");
+    contrasena = scanner.nextLine();
+
+    if (validarCredenciales(usuario, contrasena)) {
+        System.out.println("¡Acceso concedido!");
+        // Llamar al método mostrarMenu() de MenuEmpleado
+        MenuEmpleado.mostrarMenu();
+    } else {
+        System.out.println("Credenciales incorrectas. Acceso denegado.");
+    }
+}
+
+    private static boolean validarCredenciales(String usuario, String contrasena) {
+        return credencialesEmpleados.containsKey(usuario) && credencialesEmpleados.get(usuario).equals(contrasena);
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package menucafeteria;
+import java.util.*;
+
+public class MenuEmpleado {
+    public static void mostrarMenu() {
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
+
+        do {
+            System.out.println("Menú de Empleado");
+            System.out.println("1. Ver Productos");
+            System.out.println("2. Agregar Productos");
+            System.out.println("0. Cerrar Sesión");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer de entrada
+
+            switch (opcion) {
+                case 1:
+                    GestionProductos.mostrarProductos(); // Llamar al método para ver productos
+                    break;
+                case 2:
+                    GestionProductos.agregarProducto();// Llamar al método para ver reportes de ventas
+                    break;
+                case 0:
+                    System.out.println("Cerrando sesión...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida.");
+            }
+        } while (opcion != 0);
+    }
+}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package menucafeteria;
+
+/**
+ *
+ * @author rodri
+ */
+class Producto {
+    private String nombre;
+    private double precioUnitario;
+    private int cantidad;
+
+    public Producto(String nombre, double precioUnitario, int cantidad) {
+        this.nombre = nombre;
+        this.precioUnitario = precioUnitario;
+        this.cantidad = cantidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+}
